@@ -1,0 +1,151 @@
+<div class="">
+    <h3>Empleados</h3>
+</div>
+<hr>
+<br>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearEmpleado">Crear Nuevo</button>
+</div>
+
+<div class="modal fade" id="modalCrearEmpleado" tabindex="-1" aria-labelledby="modalCrearEmpleadoLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCrearEmpleadoLabel">Nuevo Empleado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="" id="basic-addon1" *ngIf="!formEmpleado.valid"
+                    style="color:red; font-weight: bold;font-size: 0.8em; ">* Ingrese todos los campos.</p>
+                <form [formGroup]="formEmpleado">
+                    <div class="input-group mb-3">
+                        <input type="number" formControlName="dpi" class="form-control" placeholder="Ingrese DPI sin guiones" aria-label="DPI" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEmpleado.controls.dpi.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEmpleado.controls.dpi.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="nombres" class="form-control" placeholder="Ingrese Nombres" aria-label="Nombres" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEmpleado.controls.nombres.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEmpleado.controls.nombres.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="apellidos" class="form-control" placeholder="Ingrese Apellidos" aria-label="Apellidos" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEmpleado.controls.apellidos.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEmpleado.controls.apellidos.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="direccion" class="form-control" placeholder="Ingrese Dirección" aria-label="Direccion" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEmpleado.controls.direccion.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEmpleado.controls.direccion.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="number" formControlName="telefono" class="form-control" placeholder="Ingrese Teléfono" aria-label="Telefono" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEmpleado.controls.telefono.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEmpleado.controls.telefono.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" (click)="crearEmpleado()" class="btn btn-primary" [disabled]="!formEmpleado.valid" data-bs-dismiss="modal">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">DPI</th>
+            <th scope="col">Detalle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngIf="empleados?.length===0">
+            <td colspan="7" class="text-center">
+              No existen registros.
+            </td>
+        </tr>
+
+        <tr *ngFor="let dato of empleados; let i = index;">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{dato.nombres}}</td>
+            <td>{{dato.apellidos}}</td>
+            <td>{{dato.direccion}}</td>
+            <td>{{dato.telefono}}</td>
+            <td>{{dato.cui}}</td>
+            <td>
+                <button (click)="llenarInfoVisitas(dato.id, dato.supervisor)" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDetalle">
+                    <i class="fa fa-eye" ></i>
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+
+
+<!-- modal para ver supervisores -->
+<div class="modal fade lg" id="modalDetalle" tabindex="-1" aria-labelledby="modalDetalleLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDetalleLabel">Información del Técnico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+<p><strong>Supervisor Asignado:</strong> {{nombreSupervisor}}</p>
+
+                <table class="table">
+                    <thead>
+                        <tr style="text-align: center" scope="col"><th colspan="7" >Visitas asignadas</th></tr>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Fecha Visita</th>
+                        <th scope="col">Motivo</th>
+                        <th scope="col">Tipo Servicio</th>
+                        <th scope="col">Origen</th>
+                        <th scope="col">Destino</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr *ngIf="visitasTemporal?.length===0">
+                        <td colspan="7" class="text-center">
+                            No existen visitas asignadas.
+                        </td>
+                    </tr>
+                        
+                      <tr *ngFor="let dato of visitasTemporal; let i = index;" >
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{dato.cliente.nombres}} {{dato.cliente.apellidos}} - {{dato.cliente.nombreEmpresa}}</td>
+                        <td>{{formatoFecha(dato.fechaVisita)}}</td>
+                        <td>{{dato.motivo}}</td>
+                        <td>{{dato.servicio.descripcion}}</td>
+                        <td>{{dato.direccionOrigen}}</td>
+                        <td>{{dato.direccionDestino}}</td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <!-- <button type="button" (click)="crearEmpleado()" class="btn btn-primary" [disabled]="!formEmpleado.valid" data-bs-dismiss="modal">Crear</button> -->
+            </div>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,56 @@
+
+<div class="row">
+
+
+    <div class="col-md-4">
+        <table class="table">
+            <thead class="table-info">
+                <th class="title" style="font-size:1.2em; padding:3%;">
+                    <i class="fa fa-check"></i> Empleados
+                </th>
+            </thead>
+            <tbody>
+                <br>
+                <tr *ngFor="let data of empleados">
+                    <td> {{data.nombres}} {{data.apellidos}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="col-md-4">
+        <table class="table">
+            <thead class="table-info">
+                <th class="title" style="font-size:1.2em; padding:3%;">
+                    <i class="fa fa-check"></i> Supervisores
+                </th>
+            </thead>
+            <tbody>
+                <br>
+                <tr *ngFor="let data of supervisores">
+                    <td> {{data.nombres}} {{data.apellidos}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div class="col-md-4">
+        <table class="table">
+            <thead class="table-info">
+                <th class="title" style="font-size:1.2em; padding:3%;">
+                    <i class="fa fa-check"></i> Clientes
+                </th>
+            </thead>
+            <tbody>
+                <br>
+                <tr *ngFor="let data of clientes">
+                    <td> {{data.nombres}} {{data.apellidos}} - {{data.nombreEmpresa}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

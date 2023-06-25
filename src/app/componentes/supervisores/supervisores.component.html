@@ -1,0 +1,202 @@
+<div class="">
+    <h3>Supervisores</h3>
+</div>
+<hr>
+<br>
+
+
+<div class="modal-footer">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearVisita">Crear Visita</button>
+</div>
+
+
+<div class="modal fade" id="modalCrearVisita" tabindex="-1" aria-labelledby="modalCrearVisitaLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCrearVisitaLabel">Nueva Visita</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="" id="basic-addon1" *ngIf="!formVisita.valid" style="color:red; font-weight: bold;font-size: 0.8em; ">* Ingrese todos los campos.</p>
+                <form [formGroup]="formVisita">
+                    <div class="input-group mb-3">
+                        <label for="" class="col-sm-3">Técnico &nbsp;&nbsp;&nbsp;</label>
+                        <select formControlName="idTecnico" class="form-select">
+                            <!-- <option *ngFor="let dato of tecnicos"   value="dato">{{dato.nombres}} {{dato.apellidos}}</option> -->
+                            <option *ngFor="let dato of tecnicos"   value="{{dato.id}}">{{dato.nombres}} {{dato.apellidos}}</option>
+                        </select>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formVisita.controls.idTecnico.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formVisita.controls.idTecnico.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="col-sm-3" for="">Cliente &nbsp;&nbsp;&nbsp;</label>
+                        <select formControlName="idCliente" class="form-select">
+                            <option *ngFor="let dato of clientes"   value="{{dato.id}}">{{dato.nombres}} {{dato.apellidos}} - {{dato.nombreEmpresa}}</option>
+                        </select>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formVisita.controls.idCliente.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formVisita.controls.idCliente.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="col-sm-3" for="">Tipo de Servicio &nbsp;&nbsp;&nbsp;</label>
+                        <select formControlName="idServicio" class="form-select">
+                            <option *ngFor="let dato of tiposServicio"   value="{{dato.id}}">{{dato.nombre}}</option>
+                        </select>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formVisita.controls.idServicio.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formVisita.controls.idServicio.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="col-sm-3" for="">Motivo &nbsp;&nbsp;&nbsp;</label>
+                        <input type="textarea" formControlName="motivo" class="form-control" placeholder="Motivo" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formVisita.controls.motivo.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formVisita.controls.motivo.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="col-sm-3" for="">Fecha Visita &nbsp;&nbsp;&nbsp;</label>
+                        <input type="date" formControlName="fechaVisita" class="form-control" placeholder="Fecha de la Visita" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formVisita.controls.fechaVisita.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formVisita.controls.fechaVisita.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                        <!-- <br><p style="font-size: 0.8em; color: gray;">La fecha no puede ser anterior a la fecha actual</p> -->
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="col-sm-3" for="">Dirección de Origen &nbsp;&nbsp;&nbsp;</label>
+                        <input type="text" formControlName="direccionOrigen" class="form-control" placeholder="Direccion de Origen" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formVisita.controls.direccionOrigen.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formVisita.controls.direccionOrigen.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="col-sm-3" for="">Dirección de Destino &nbsp;&nbsp;&nbsp;</label>
+                        <input type="text" formControlName="direccionDestino" class="form-control" placeholder="Dirección de Destino" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formVisita.controls.direccionDestino.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formVisita.controls.direccionDestino.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" (click)="llenarDatos()" class="btn btn-primary" [disabled]="!formVisita.valid" data-bs-dismiss="modal">Crear</button>
+                <!-- <button type="button" (click)="llenarDatos()" class="btn btn-primary"  data-bs-dismiss="modal">Crear</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">DPI</th>
+            <th scope="col">Técnicos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngIf="supervisores.length == 0">
+            <td colspan="7" style="text-align: center;">No existen registros.</td>
+        </tr>
+        <tr *ngFor="let dato of supervisores; let i = index;">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{dato.nombres}}</td>
+            <td>{{dato.apellidos}}</td>
+            <td>{{dato.direccion}}</td>
+            <td>{{dato.telefono}}</td>
+            <td>{{dato.cui}}</td>
+            <td>
+                <button class="btn btn-info" (click)="llenarInfoTecnicos(dato.id)" title="Técnicos Asignados" data-bs-toggle="modal" data-bs-target="#modalMostrarTecnicos">
+                    <i class="fa fa-eye" ></i>
+                </button>
+&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-warning" (click)="llenarTecnicos(dato.id)" title="Asignar Técnicos" data-bs-toggle="modal" data-bs-target="#modalAsignarTecnicos">
+                    <i class="fa fa-users" ></i>
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+
+
+<!-- modal para ver supervisores -->
+<div class="modal fade" id="modalMostrarTecnicos" tabindex="-1" aria-labelledby="modalMostrarTecnicosLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalMostrarTecnicosLabel">Técnicos Asignados</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">DPI</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngIf="tecnicosTemporal?.length===0">
+                        <td colspan="4" class="text-center">
+                            No existen registros.
+                        </td>
+                    </tr>
+                      <tr  *ngFor="let dato of tecnicosTemporal;let i= index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{dato.cui}}</td>
+                        <td>{{dato.nombres}}</td>
+                        <td>{{dato.apellidos}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <!-- <button type="button" (click)="crearEmpleado()" class="btn btn-primary" [disabled]="!formEmpleado.valid" data-bs-dismiss="modal">Crear</button> -->
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+<!-- modal para asignar tecnicos -->
+<div class="modal fade" id="modalAsignarTecnicos" tabindex="-1" aria-labelledby="modalAsignarTecnicosLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAsignarTecnicosLabel">Asignar Técnicos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formAsignarTecnico">
+
+                <div class="input-group mb-3">
+                    <label for="" class="col-sm-3">Técnico &nbsp;&nbsp;&nbsp;</label>
+                    <select formControlName="idTecnico" class="form-select">
+          <option *ngFor="let dato of tecnicosTemporal"   value="{{dato.id}}">{{dato.nombres}} {{dato.apellidos}}</option>
+
+                    </select>
+                    <span class="input-group-text" id="basic-addon1" *ngIf="formAsignarTecnico.controls.idTecnico.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                    <span class="input-group-text" id="basic-addon1" *ngIf="!formAsignarTecnico.controls.idTecnico.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                </div>
+</form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" (click)="asignarTecnico()" class="btn btn-primary" [disabled]="!formValid" data-bs-dismiss="modal">Asignar</button>
+            </div>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,44 @@
+<!-- <p>visitas works!</p>
+/* motivo fechaVisita direccionOrigen direccionDestino nombreCliente nombreEmpleado, tipoServicio */ -->
+
+<div class="">
+    <h3>Visitas</h3>
+</div>
+<hr>
+<br>
+
+<table class="table">
+    <thead>
+        <!-- <tr style="text-align: center" scope="col"><th colspan="7" >Visitas asignadas</th></tr> -->
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Técnico</th>
+        <th scope="col">Fecha Visita</th>
+        <th scope="col">Motivo</th>
+        <th scope="col">Tipo Servicio</th>
+        <th scope="col">Origen</th>
+        <th scope="col">Destino</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngIf="visitas?.length===0">
+        <td colspan="8" class="text-center">
+            No existen visitas asignadas.
+        </td>
+    </tr>
+        
+      <tr *ngFor="let dato of visitas; let i = index;" >
+        <th scope="row">{{i+1}}</th>
+        <td>{{dato.cliente.nombres}} {{dato.cliente.apellidos}} - {{dato.cliente.nombreEmpresa}}</td>
+        <td>{{dato.empleado.nombres}} {{dato.empleado.apellidos}}</td>
+        <td>{{formatoFecha(dato.fechaVisita)}}</td>
+        <td>{{dato.motivo}}</td>
+        <td>{{dato.servicio.descripcion}}</td>
+        <td>{{dato.direccionOrigen}}</td>
+        <td>{{dato.direccionDestino}}</td>
+
+      </tr>
+    </tbody>
+  </table>

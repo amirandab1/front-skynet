@@ -1,0 +1,72 @@
+<div class="container-fluid principal">
+    <div class="row flex-nowrap">
+
+        <div class="bg-dark col-auto col-md-3 col-lg-3 min-vh-100">
+            <div class="bg-dark p-2">
+                <br>
+                <img style="width: 50%;margin-left: 50px;" src="https://umg.edu.gt/assets/umg.png" alt="">
+                <!-- <a class="d-flex text-decoration-none mt-1 align-items-center text-white">
+                    <i class="fs-5 fa fa-guage"></i><span class="fs-4 d-none d-sm-inline">Menu</span>
+                </a> -->
+                <ul class="nav nav-pills flex-column mt-4">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" (click)="mostrar('Inicio')">
+                            <i class="fa fa-home"></i><span
+                                class="fs-4 d-none d-sm-inline elemento">&nbsp;&nbsp;&nbsp;&nbsp;Inicio</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" (click)="mostrar('Empleados')">
+                            <i class="fa fa-user"></i><span
+                                class="fs-4 d-none d-sm-inline elemento">&nbsp;&nbsp;&nbsp;&nbsp;Empleados</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" (click)="mostrar('Supervisores')">
+                            <i class="fa fa-user-circle"></i><span
+                                class="fs-4 d-none d-sm-inline elemento">&nbsp;&nbsp;&nbsp;&nbsp;Supervisores</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" (click)="mostrar('Clientes')">
+                            <i class="fa fa-users"></i><span
+                                class="fs-4 d-none d-sm-inline elemento">&nbsp;&nbsp;&nbsp;&nbsp;Clientes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" (click)="mostrar('Visitas')">
+                            <i class="fa fa-address-card"></i><span
+                                class="fs-4 d-none d-sm-inline elemento">&nbsp;&nbsp;&nbsp;&nbsp;Visitas</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- contenido -->
+        <div class="py-3 col-md-9">
+
+            <div class="card">
+                <br>
+                <div class="container">
+                    <!-- <h1 *ngIf="!mostrarCliente && !mostrarEmpleado">Esto es el inicio</h1> -->
+                    <section *ngIf="mostrarInicio">
+                        <app-inicio></app-inicio>
+                    </section>
+                    <section *ngIf="mostrarCliente">
+                        <app-clientes></app-clientes>
+                    </section>
+                    <section *ngIf="mostrarEmpleado">
+                        <app-empleados></app-empleados>
+                    </section>
+                    <section *ngIf="mostrarSupervisor">
+                        <app-supervisores></app-supervisores>
+                    </section>
+                    <section *ngIf="mostrarVisitas">
+                        <app-visitas></app-visitas>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="content">
+
+    <div class="container-fluid">
+
+
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <br>
+            <h3 class="" style="text-align: center;    font-family: sans-serif;">Iniciar Sesión</h3>
+        </div>
+        <div class="card-body">
+
+            <!-- This is some text within a card body. -->
+            <form [formGroup]="formLogin">
+                <div class="form-group">
+
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" placeholder="Ingrese un usuario válido" required>
+                        <label for="floatingInput"><i class="fa fa-user"></i>Usuario</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" placeholder="Ingrese una contraseña válida.">
+                        <label for="floatingPassword"><i class="fa fa-lock"></i>Constraseña</label>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary center" (click)='autenticar()'>Ingresar</button>
+                <!-- <button type="submit" class="btn btn-primary center" (click)='autenticar()' [disabled]="!this.formLogin.valid" >Ingresar</button> -->
+            </form>
+        </div>
+    </div>
+
+    </div>
+</div>

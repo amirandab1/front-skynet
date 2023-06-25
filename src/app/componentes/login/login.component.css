@@ -1,0 +1,24 @@
+label{
+    
+    padding-bottom: 5%;
+}
+
+i{
+    margin-right:10px;
+}
+
+.swal2-shown .swal2-height-auto{
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0, 100%);
+    width: 32em;
+    max-width: 100%;
+    padding: 0 0 1.25em;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    color: #545454;
+    font-family: inherit;
+    font-size: 0.8rem;
+}

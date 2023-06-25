@@ -1,0 +1,99 @@
+<div class="">
+    <h3>Clientes</h3>
+</div>
+<hr>
+<br>
+
+
+<div class="modal-footer">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearCliente">Crear Cliente</button>
+</div>
+
+
+
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">NIT</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">CUI</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngIf="clientes.length == 0">
+            <td colspan="7" style="text-align: center;">No existen registros.</td>
+        </tr>
+        <tr *ngFor="let dato of clientes; let i = index;">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{dato.nombres}}</td>
+            <td>{{dato.apellidos}}</td>
+            <td>{{dato.nombreEmpresa}}</td>
+            <td>{{dato.nit}}</td>
+            <td>{{dato.direccion}}</td>
+            <td>{{dato.cui}}</td>
+
+        </tr>
+
+    </tbody>
+</table>
+
+
+
+
+<!-- MODAL PARA UN  NUEVO CLIENTE -->
+<div class="modal fade" id="modalCrearCliente" tabindex="-1" aria-labelledby="modalCrearClienteLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCrearClienteLabel">Nuevo Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="" id="basic-addon1" *ngIf="!formCliente.valid"
+                    style="color:red; font-weight: bold;font-size: 0.8em; ">* Ingrese todos los campos.</p>
+                <form [formGroup]="formCliente">
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="nombres" class="form-control" placeholder="Ingrese Nombres" aria-label="DPI" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formCliente.controls.nombres.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formCliente.controls.nombres.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="apellidos" class="form-control" placeholder="Ingrese Apellidos" aria-label="Nombres" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formCliente.controls.apellidos.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formCliente.controls.apellidos.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="nit" class="form-control" placeholder="Ingrese NIT" aria-label="Apellidos" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formCliente.controls.nit.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formCliente.controls.nit.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="cui" class="form-control" placeholder="Ingrese CUI" aria-label="Direccion" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formCliente.controls.cui.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formCliente.controls.cui.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="empresa" class="form-control" placeholder="Ingrese Nombre de la Empresa" aria-label="Telefono" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formCliente.controls.empresa.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formCliente.controls.empresa.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="direccion" class="form-control" placeholder="Ingrese Dirección" aria-label="Telefono" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formCliente.controls.direccion.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formCliente.controls.direccion.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" (click)="crearCliente()" class="btn btn-primary" [disabled]="!formCliente.valid" data-bs-dismiss="modal">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
