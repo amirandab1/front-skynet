@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  rutaMicros: 'https://seminario-skynet.uc.r.appspot.com/api/'
 };
