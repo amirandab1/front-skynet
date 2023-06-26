@@ -4,6 +4,7 @@ import { environment } from "src/environments/environment";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -74,6 +75,14 @@ export class ServiciosAppService {
     crearCliente( variables : any): Observable<any>{
         return this.http.post(environment.rutaMicros+"cliente/", variables)
     }
+
+    actualizarEmpleado( variables: any, id:any ){
+      return this.http.put(environment.rutaMicros+"empleado/"+id, variables)
+    }
+
+    actualizarCliente( variables: any, id:any ){
+        return this.http.put(environment.rutaMicros+"cliente/"+id, variables)
+      }
 
     generarListaEmpleadoPDF(){
         return this.http.get(this.rutaMicros+'pdf', {responseType: 'blob'})
