@@ -75,11 +75,7 @@ export class ServiciosAppService {
         return this.http.post(environment.rutaMicros+"cliente/", variables)
     }
 
-    actualizarEmpleado( variables: any, id:any ){
-      return this.http.put(environment.rutaMicros+"empleado/"+id, variables)
+    generarListaEmpleadoPDF(){
+        return this.http.get(this.rutaMicros+'pdf', {responseType: 'blob'})
     }
-
-    actualizarCliente( variables: any, id:any ){
-        return this.http.put(environment.rutaMicros+"cliente/"+id, variables)
-      }
 }
