@@ -113,7 +113,7 @@ export class EmpleadosComponent implements OnInit {
   }
 
   generarListaEmpleadoPDF(){
-    this.servicios.generarListaEmpleadoPDF.subscribe((data) => {
+    this.servicios.generarListaEmpleadoPDF().subscribe((data) => {
       let downLoadURL = window.URL.createObjectURL(data)
       let link = document.createElement('a')
       link.href = downLoadURL
