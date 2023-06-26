@@ -85,6 +85,10 @@
                 <button (click)="llenarInfoVisitas(dato.id, dato.supervisor)" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalDetalle">
                     <i class="fa fa-eye" ></i>
                 </button>
+                &nbsp;&nbsp;&nbsp;
+                <button (click)="llenarDatosEditar(dato.id)" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditar">
+                    <i class="fa fa-edit" ></i>
+                </button>
             </td>
         </tr>
 
@@ -146,6 +150,66 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <!-- <button type="button" (click)="crearEmpleado()" class="btn btn-primary" [disabled]="!formEmpleado.valid" data-bs-dismiss="modal">Crear</button> -->
             </div>
+        </div>
+    </div>
+    </div>
+
+
+<!-- modal para editar empleados -->
+<div class="modal fade lg" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditarLabel">Editar Datos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+<!-- <p><strong>Supervisor Asignado:</strong> {{nombreSupervisor}}</p> -->
+<div class="modal-body">
+    <!-- <p class="" id="basic-addon1" *ngIf="!formEmpleado.valid" style="color:red; font-weight: bold;font-size: 0.8em; ">* Ingrese todos los campos.</p> -->
+    <form [formGroup]="formEditarEmpleado">
+        <div class="input-group mb-3">
+            <input type="number" formControlName="dpi"  readonly class="form-control" placeholder="Ingrese DPI sin guiones" aria-label="DPI" aria-describedby="basic-addon1">
+            <span class="input-group-text" id="basic-addon1" *ngIf="formEditarEmpleado.controls.dpi.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+            <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarEmpleado.controls.dpi.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" formControlName="nombres" class="form-control" placeholder="Ingrese Nombres" aria-label="Nombres" aria-describedby="basic-addon1">
+            <span class="input-group-text" id="basic-addon1" *ngIf="formEditarEmpleado.controls.nombres.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+            <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarEmpleado.controls.nombres.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" formControlName="apellidos" class="form-control" placeholder="Ingrese Apellidos" aria-label="Apellidos" aria-describedby="basic-addon1">
+            <span class="input-group-text" id="basic-addon1" *ngIf="formEditarEmpleado.controls.apellidos.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+            <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarEmpleado.controls.apellidos.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" formControlName="direccion" class="form-control" placeholder="Ingrese Dirección" aria-label="Direccion" aria-describedby="basic-addon1">
+            <span class="input-group-text" id="basic-addon1" *ngIf="formEditarEmpleado.controls.direccion.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+            <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarEmpleado.controls.direccion.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+        </div>
+        <div class="input-group mb-3">
+            <input type="number" formControlName="telefono" class="form-control" placeholder="Ingrese Teléfono" aria-label="Telefono" aria-describedby="basic-addon1">
+            <span class="input-group-text" id="basic-addon1" *ngIf="formEditarEmpleado.controls.telefono.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+            <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarEmpleado.controls.telefono.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+        </div>
+
+        <div class="input-group mb-3">
+            <select formControlName="idSupervisor" class="form-select">
+                <option *ngFor="let dato of supervisores"   value="{{dato.id}}">{{dato.nombres}} {{dato.apellidos}}</option>
+            </select>
+            <span class="input-group-text" id="basic-addon1" *ngIf="formEditarEmpleado.controls.idSupervisor.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+            <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarEmpleado.controls.idSupervisor.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+    <button type="button" (click)="actualizarEmpleado()" class="btn btn-primary" [disabled]="!formEditarEmpleado.valid" data-bs-dismiss="modal">Actualizar</button>
+</div>
         </div>
     </div>
     </div>
