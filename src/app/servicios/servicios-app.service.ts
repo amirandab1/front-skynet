@@ -74,4 +74,12 @@ export class ServiciosAppService {
     crearCliente( variables : any): Observable<any>{
         return this.http.post(environment.rutaMicros+"cliente/", variables)
     }
+
+    actualizarEmpleado( variables: any, id:any ){
+      return this.http.put(environment.rutaMicros+"empleado/"+id, variables)
+    }
+
+    actualizarCliente( variables: any, id:any ){
+        return this.http.put(environment.rutaMicros+"cliente/"+id, variables)
+      }
 }
