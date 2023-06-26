@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
 })
 export class ClientesComponent implements OnInit {
 
-  clientes:any=[];
+  clientes: any = [];
+  clienteTemporal: any;
 
   public formCliente = new FormGroup({
     nombres: new FormControl(null, [Validators.required]),
@@ -19,57 +20,71 @@ export class ClientesComponent implements OnInit {
     cui: new FormControl(null, [Validators.required]),
     empresa: new FormControl(null, [Validators.required]),
     direccion: new FormControl(null, [Validators.required]),
+    email: new FormControl(null, [Validators.required]),
+
   });
 
-  
-  constructor( private servicios: ServiciosAppService) { }
+  public formEditarCliente = new FormGroup({
+    id: new FormControl(null, [Validators.required]),
+    nombres: new FormControl(null, [Validators.required]),
+    apellidos: new FormControl(null, [Validators.required]),
+    nit: new FormControl(null, [Validators.required]),
+    cui: new FormControl(null, [Validators.required]),
+    empresa: new FormControl(null, [Validators.required]),
+    direccion: new FormControl(null, [Validators.required]),
+    email: new FormControl(null, [Validators.required]),
+
+  });
+
+  constructor(private servicios: ServiciosAppService) { }
 
   ngOnInit(): void {
 
-    this.servicios.obtenerClientes().toPromise().then( data => {
+    this.servicios.obtenerClientes().toPromise().then(data => {
       this.clientes = data;
+      console.log("que  hay en data === " , data)
     })
 
   }
 
 
-  crearCliente(){
+  crearCliente() {
     let form = this.formCliente.controls;
-    let variables= {
-      "nombres":form.nombres.value,
-      "apellidos":form.apellidos.value, 
-      "nombreEmpresa":form.empresa.value, 
-      "nit":form.nit.value, 
-      "direccion":form.direccion.value,
-      // "telefono": form.telefono.value,
-      "cui":form.cui.value
+    let variables = {
+      "nombres": form.nombres.value,
+      "apellidos": form.apellidos.value,
+      "nombreEmpresa": form.empresa.value,
+      "nit": form.nit.value,
+      "direccion": form.direccion.value,
+      "cui": form.cui.value,
+      "email": form.email.value
     }
 
-    console.log("datos === " , variables)
+    console.log("datos === ", variables)
 
-    this.servicios.crearCliente(variables).toPromise().then( resp =>{
-      console.log("Respuesta ==== " , resp)
-      this.mensajeExito()
-    }).catch( err =>{
-      console.log("Error ===== " , err)
+    this.servicios.crearCliente(variables).toPromise().then(resp => {
+      console.log("Respuesta ==== ", resp)
+      this.mensajeExito("El cliente se ha creado con éxito.", "Se registró con éxito")
+    }).catch(err => {
+      console.log("Error ===== ", err)
     })
   }
 
 
-  mensajeExito(){
+  mensajeExito(texto: string, mensaje: string) {
     Swal.fire({
-      title: "El cliente se ha creado con éxito.",
+      title: texto,
       icon: 'success',
       showClass: {
         popup: 'animate__animated animate__fadeInDown'
       },
-      html: 'Se registró con éxito',
+      html: mensaje,
     }).then((result) => {
       location.href = 'bandeja'
     });
   }
 
-  mensajeError(texto:any){
+  mensajeError(texto: any) {
     Swal.fire({
       icon: 'error',
       title: 'Error',
@@ -77,7 +92,56 @@ export class ClientesComponent implements OnInit {
     })
   }
 
+  async llenarDatosEditar(idCliente: any) {
 
+    let form = this.formEditarCliente.controls;
+
+
+    await this.servicios.obtenerClientes().toPromise().then(data => {
+      let temp: any = data;
+      temp.filter((d: any) => {
+        if (d.id == idCliente) {
+          this.clienteTemporal = d;
+        }
+      })
+
+      form.id.setValue(this.clienteTemporal.id);
+      form.nombres.setValue(this.clienteTemporal.nombres);
+      form.apellidos.setValue(this.clienteTemporal.apellidos);
+      form.empresa.setValue(this.clienteTemporal.nombreEmpresa);
+      form.nit.setValue(this.clienteTemporal.nit);
+      form.direccion.setValue(this.clienteTemporal.direccion);
+      form.cui.setValue(this.clienteTemporal.cui);
+      form.email.setValue(this.clienteTemporal.email);
+
+    })
+
+  }
+
+  async actualizarCliente() {
+
+    let form = this.formEditarCliente.controls;
+
+    let variables = {
+      "id": form.id.value,
+      "nombres": form.nombres.value,
+      "apellidos": form.apellidos.value,
+      "nombreEmpresa": form.empresa.value,
+      "nit": form.nit.value,
+      "direccion": form.direccion.value,
+      "cui": form.cui.value,
+      "email": form.email.value
+    }
+
+
+    this.servicios.actualizarCliente(variables, form.id.value).toPromise().then(resp => {
+      console.log("Respuesta ==== ", resp)
+      this.mensajeExito("El cliente se ha actualizado con éxito.", "Se actualizó con éxito")
+    }).catch(err => {
+      console.log("Error ===== ", err)
+    })
+
+  }
 
 
 }

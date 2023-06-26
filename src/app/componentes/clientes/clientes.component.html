@@ -22,11 +22,13 @@
             <th scope="col">NIT</th>
             <th scope="col">Dirección</th>
             <th scope="col">CUI</th>
+            <th scope="col">Email</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngIf="clientes.length == 0">
-            <td colspan="7" style="text-align: center;">No existen registros.</td>
+            <td colspan="8" style="text-align: center;">No existen registros.</td>
         </tr>
         <tr *ngFor="let dato of clientes; let i = index;">
             <th scope="row">{{ i+1 }}</th>
@@ -36,7 +38,12 @@
             <td>{{dato.nit}}</td>
             <td>{{dato.direccion}}</td>
             <td>{{dato.cui}}</td>
-
+            <td>{{dato.email}}</td>
+            <td>
+                <button (click)="llenarDatosEditar(dato.id)" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarCliente">
+                    <i class="fa fa-edit" ></i>
+                </button>
+            </td>
         </tr>
 
     </tbody>
@@ -88,11 +95,73 @@
                         <span class="input-group-text" id="basic-addon1" *ngIf="formCliente.controls.direccion.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
                         <span class="input-group-text" id="basic-addon1" *ngIf="!formCliente.controls.direccion.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
                     </div>
+                    <div class="input-group mb-3">
+                        <input type="email" formControlName="email" class="form-control" placeholder="Ingrese Correo Electrónico" aria-label="Telefono" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEditarCliente.controls.email.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarCliente.controls.email.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" (click)="crearCliente()" class="btn btn-primary" [disabled]="!formCliente.valid" data-bs-dismiss="modal">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PARA UN  NUEVO CLIENTE -->
+<div class="modal fade" id="modalEditarCliente" tabindex="-1" aria-labelledby="modalEditarClienteLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditarClienteLabel">Editar Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- <p class="" id="basic-addon1" *ngIf="!formEditarCliente.valid" style="color:red; font-weight: bold;font-size: 0.8em; ">* Ingrese todos los campos.</p> -->
+                <form [formGroup]="formEditarCliente">
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="cui" readonly class="form-control" placeholder="Ingrese CUI" aria-label="Direccion" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEditarCliente.controls.cui.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarCliente.controls.cui.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="nombres" class="form-control" placeholder="Ingrese Nombres" aria-label="DPI" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEditarCliente.controls.nombres.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarCliente.controls.nombres.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="apellidos" class="form-control" placeholder="Ingrese Apellidos" aria-label="Nombres" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEditarCliente.controls.apellidos.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarCliente.controls.apellidos.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="nit" class="form-control" placeholder="Ingrese NIT" aria-label="Apellidos" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEditarCliente.controls.nit.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarCliente.controls.nit.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="empresa" class="form-control" placeholder="Ingrese Nombre de la Empresa" aria-label="Telefono" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEditarCliente.controls.empresa.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarCliente.controls.empresa.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="direccion" class="form-control" placeholder="Ingrese Dirección" aria-label="Telefono" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEditarCliente.controls.direccion.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarCliente.controls.direccion.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="email" formControlName="email" class="form-control" placeholder="Ingrese Correo Electrónico" aria-label="Telefono" aria-describedby="basic-addon1">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="formEditarCliente.controls.email.valid" style="color:greenyellow; font-weight: bold;"><i class="fa fa-check"></i></span>
+                        <span class="input-group-text" id="basic-addon1" *ngIf="!formEditarCliente.controls.email.valid" style="color:red; font-weight: bold;"><i class="fa fa-times"></i></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" (click)="actualizarCliente()" class="btn btn-primary" [disabled]="!formEditarCliente.valid" data-bs-dismiss="modal">Actualizar</button>
             </div>
         </div>
     </div>
