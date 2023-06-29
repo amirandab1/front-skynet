@@ -16,7 +16,7 @@ import { EmpleadosComponent } from './componentes/empleados/empleados.component'
 import { SupervisoresComponent } from './componentes/supervisores/supervisores.component';
 import { VisitasComponent } from './componentes/visitas/visitas.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
-import { ServiciosComponent} from './componentes/servicios/servicios.component'
+import { ServiciosSkynetComponent} from './componentes/servicios_skynet/servicios_skynet.component'
 
 
 @NgModule({
@@ -29,7 +29,7 @@ import { ServiciosComponent} from './componentes/servicios/servicios.component'
     SupervisoresComponent,
     VisitasComponent,
     InicioComponent,
-    ServiciosComponent
+    ServiciosSkynetComponent
   ],
   imports: [
     BrowserModule,
