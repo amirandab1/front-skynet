@@ -13,6 +13,7 @@ export class BandejaComponent implements OnInit {
   mostrarInicio=true;
   mostrarSupervisor=false;
   mostrarVisitas=false;
+  mostrarServiciosSkynet=false;
 
   constructor() { }
 
@@ -27,6 +28,7 @@ export class BandejaComponent implements OnInit {
       this.mostrarInicio = false;
       this.mostrarVisitas = false;
       this.mostrarSupervisor = false;
+      this.mostrarServiciosSkynet = false;
     }
     else if(elemento == 'Empleados'){
       this.mostrarEmpleado = true;
@@ -34,6 +36,8 @@ export class BandejaComponent implements OnInit {
       this.mostrarInicio = false;
       this.mostrarVisitas = false;
       this.mostrarSupervisor = false;
+      this.mostrarServiciosSkynet = false;
+      
     }
     else if(elemento == 'Inicio'){
       this.mostrarEmpleado = false;
@@ -41,6 +45,7 @@ export class BandejaComponent implements OnInit {
       this.mostrarInicio = true;
       this.mostrarVisitas = false;
       this.mostrarSupervisor = false;
+      this.mostrarServiciosSkynet = false;
     }
     else if(elemento == 'Supervisores'){
       this.mostrarEmpleado = false;
@@ -48,6 +53,7 @@ export class BandejaComponent implements OnInit {
       this.mostrarInicio = false;
       this.mostrarVisitas = false;
       this.mostrarSupervisor = true;
+      this.mostrarServiciosSkynet = false;
     }
     else if(elemento == 'Visitas'){
       this.mostrarEmpleado = false;
@@ -55,6 +61,16 @@ export class BandejaComponent implements OnInit {
       this.mostrarInicio = false;
       this.mostrarVisitas = true;
       this.mostrarSupervisor = false;
+      this.mostrarServiciosSkynet = false;
     }
+    else if(elemento == 'ServiciosSkynet'){
+      this.mostrarEmpleado = false;
+      this.mostrarCliente = false;
+      this.mostrarInicio = false;
+      this.mostrarVisitas = false;
+      this.mostrarSupervisor = false;
+      this.mostrarServiciosSkynet = true;
+    }
+
   }
 }
