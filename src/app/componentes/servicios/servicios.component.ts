@@ -18,7 +18,7 @@ export class ServiciosComponent implements OnInit {
   ngOnInit(): void {
 
     this.servicios.obtenerServicios().toPromise().then( data=>{
-      this.visitas = data
+      this.servicios = data
     });
 
   }
