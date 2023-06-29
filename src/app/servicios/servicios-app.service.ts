@@ -59,6 +59,10 @@ export class ServiciosAppService {
         return this.http.post(environment.rutaMicros+"empleado/", variables)
     }
 
+    crearServicios( variables : any): Observable<any>{
+        return this.http.post(environment.rutaMicros+"servicio/", variables)
+    }
+
     obtenerServicios(){
         return this.http.get(this.rutaMicros+'servicios', { headers: this.header});
     }

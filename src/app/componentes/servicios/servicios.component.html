@@ -1,0 +1,30 @@
+<div class="">
+    <h3>Visitas</h3>
+</div>
+<hr>
+<br>
+
+<table class="table">
+    <thead>
+        <!-- <tr style="text-align: center" scope="col"><th colspan="7" >Visitas asignadas</th></tr> -->
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngIf="servicios?.length===0">
+        <td colspan="8" class="text-center">
+            No existen servicios.
+        </td>
+    </tr>
+        
+      <tr *ngFor="let dato of servicios; let i = index;" >
+        <th scope="row">{{i+1}}</th>
+        <td>{{dato.nombre}}</td>
+        <td>{{dato.descripcion}}</td>
+      </tr>
+    </tbody>
+  </table>
